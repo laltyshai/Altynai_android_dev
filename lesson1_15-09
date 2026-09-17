@@ -1,0 +1,30 @@
+enum class AccountType { ADMIN, FREE, PREMIUM }
+
+class User(val username: String?, val type: AccountType)
+
+fun main() {
+    val legacyUsers = listOf(
+        User("Alex", AccountType.FREE),
+        User(null, AccountType.PREMIUM),
+        User("Emir", AccountType.ADMIN),
+        User(null, AccountType.FREE),
+        User("Emil", AccountType.PREMIUM),
+        User("Bek", AccountType.FREE),
+        User(null, AccountType.PREMIUM)
+    )
+	processUsers(legacyUsers) {println("ALERT: Admin detected!")}
+    // TODO 1: Call processUsers and pass a trailing lambda that prints "ALERT: Admin detected!"
+}
+
+fun processUsers(users: List<User>, onAdminFound: () -> Unit) {
+    for (user in users) {
+            when (user.type){
+            // TODO 2: If the username is null, use "Guest". Use the Elvis operator.
+            // TODO 3: Use a 'when' statement on user.type to print a message for FREE and PREMIUM users (name included).
+            // If the user is an ADMIN, call the onAdminFound() lambda.
+
+                AccountType.ADMIN -> onAdminFound()
+                else -> println(user.username ?: "Guest")
+            }
+    }
+}
